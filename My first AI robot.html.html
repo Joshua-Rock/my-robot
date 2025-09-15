@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First AI Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin: 20px 0;
+        }
+        
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .result {
+            font-size: 24px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pulse {
+            animation: pulse 1s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .robot-face {
+            font-size: 80px;
+            margin: 20px 0;
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 My First AI Robot</h1>
+    
+    <div class="container">
+        <div class="robot-face" id="robotFace">😊</div>
+        <h2>Click the buttons and watch me react!</h2>
+        
+        <button onclick="makeHappy()">Make Robot Happy</button>
+        <button onclick="makeSad()">Make Robot Sad</button>
+        <button onclick="makeSurprised()">Surprise Robot</button>
+        <button onclick="makeAngry()">Make Robot Angry</button>
+        
+        <div class="result" id="response">
+            Hello! I'm your first AI robot. Click a button to see my emotions!
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>🎲 Random Number Generator</h2>
+        <p>This is like the "brain" of AI - making decisions!</p>
+        <button onclick="generateNumber()">Generate Random Number</button>
+        <div class="result" id="numberResult">
+            Click the button to see a random number!
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>🔮 Simple Prediction Game</h2>
+        <p>Enter your age and I'll "predict" something fun about you!</p>
+        <input type="number" id="ageInput" placeholder="Enter your age" style="padding: 10px; border-radius: 5px; border: none; margin: 10px; font-size: 16px;">
+        <button onclick="makePrediction()">Make Prediction</button>
+        <div class="result" id="predictionResult">
+            Enter your age to get a fun prediction!
+        </div>
+    </div>
+
+    <script>
+        function makeHappy() {
+            document.getElementById('robotFace').innerHTML = '😊';
+            document.getElementById('response').innerHTML = 'Yay! I\'m so happy! Thanks for making me smile! 🌟';
+            document.getElementById('response').classList.add('pulse');
+            setTimeout(() => document.getElementById('response').classList.remove('pulse'), 1000);
+        }
+        
+        function makeSad() {
+            document.getElementById('robotFace').innerHTML = '😢';
+            document.getElementById('response').innerHTML = 'Oh no... I\'m feeling sad now. Can you cheer me up? 💧';
+            document.getElementById('response').classList.add('pulse');
+            setTimeout(() => document.getElementById('response').classList.remove('pulse'), 1000);
+        }
+        
+        function makeSurprised() {
+            document.getElementById('robotFace').innerHTML = '😲';
+            document.getElementById('response').innerHTML = 'WOW! That was totally unexpected! You surprised me! ⚡';
+            document.getElementById('response').classList.add('pulse');
+            setTimeout(() => document.getElementById('response').classList.remove('pulse'), 1000);
+        }
+        
+        function makeAngry() {
+            document.getElementById('robotFace').innerHTML = '😠';
+            document.getElementById('response').innerHTML = 'BEEP BEEP! ANGER MODE ACTIVATED! Just kidding, I\'m not really angry! 🔥';
+            document.getElementById('response').classList.add('pulse');
+            setTimeout(() => document.getElementById('response').classList.remove('pulse'), 1000);
+        }
+        
+        function generateNumber() {
+            const randomNum = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('numberResult').innerHTML = `🎯 Your random number is: <strong>${randomNum}</strong>`;
+            document.getElementById('numberResult').classList.add('pulse');
+            setTimeout(() => document.getElementById('numberResult').classList.remove('pulse'), 1000);
+        }
+        
+        function makePrediction() {
+            const age = document.getElementById('ageInput').value;
+            if (!age) {
+                document.getElementById('predictionResult').innerHTML = 'Please enter your age first! 🤔';
+                return;
+            }
+            
+            const predictions = [
+                `At ${age}, you're going to have an awesome day today! 🌟`,
+                `I predict that someone age ${age} like you will learn something cool soon! 📚`,
+                `My AI brain says ${age} is the perfect age for building cool projects! 🚀`,
+                `Prediction: You (age ${age}) will amaze people with your creativity! 🎨`,
+                `The future holds great things for someone who is ${age}! ✨`
+            ];
+            
+            const randomPrediction = predictions[Math.floor(Math.random() * predictions.length)];
+            document.getElementById('predictionResult').innerHTML = randomPrediction;
+            document.getElementById('predictionResult').classList.add('pulse');
+            setTimeout(() => document.getElementById('predictionResult').classList.remove('pulse'), 1000);
+        }
+    </script>
+</body>
+</html>
